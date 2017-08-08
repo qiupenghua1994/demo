@@ -1,0 +1,15 @@
+
+<div class="modal-body" style="height: 300px;height: 200px;text-align: center">
+    <form name="loginForm">
+        <span>账号：</span>
+        <input class="form-control" ng-model="user.account" required>
+        <span>密码：</span>
+        <input class="form-control" type="password" ng-model="user.pwd" required>
+        <label ng-show="showLoginError" style="color: red;">账号或密码错误</label>
+        <label style="float: right;padding: 3px"><a ng-click="forgetPwd()">忘记密码</a> |
+            <a data-toggle="modal" data-target="#register_Dialog" data-dismiss="modal"
+               ng-click="reset()">立即注册</a></label>
+        <button type="button" class="form-control col-sm-12 btn btn-primary" ng-click="loginClick()" ng-disabled="loginForm.$invalid">立即登录
+        </button>
+    </form>
+</div>

@@ -1,0 +1,200 @@
+<!--首页-->
+<!-- 主体 -->
+<!--巨幕-->
+
+<div class="col-sm-12">
+    <div class="jumbotron" style="background-image: url(image/logo1.jpg);background-repeat: round;margin-bottom: 15px">
+        <div class="container">
+            <h1>Today Are you ready！！！</h1>
+
+            <p>...</p>
+
+            <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="row">
+        <!--左侧最新消息-->
+        <div class="col-sm-8" >
+            <div class="panel panel-default">
+                <div class="panel-heading" style="height: 54px">
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <h4 style="margin-top: 8px;">最新动态</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 form-inline tright">
+                        <div class="row">
+                            <select class="form-control" ng-change="refresh()" ng-model="q.type">
+                                <option value="">请选择类别</option>
+                                <option value="上传">上传</option>
+                                <option value="发表">发表</option>
+                            </select>
+                            <input type="text" class="form-control" placeholder="关键字搜索" ng-model="q.key">
+                            <button type="button" class="btn-primary btn " ng-click="refresh()">刷新</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-12 news">
+                        <div class="col-sm-2"><b>创建人</b></div>
+                        <div class="col-sm-1"><b>消息类型</b></div>
+                        <div class="col-sm-6 text-overfolw-ellipsis-2"><b>消息内容</b></div>
+                        <div class="col-sm-3 right"><b>创建时间</b></div>
+                    </div>
+                    <div class="col-sm-12 news" ng-repeat="item in latestData">
+                        <div class="col-sm-2"><a ng-click="openSelfInfo(item.createAccount)">{{item.createName}}</a></div>
+                        <div class="col-sm-1">{{item.newsType}}</div>
+                        <div class="col-sm-6 text-overfolw-ellipsis-2"><a title="{{item.newsContent}}" ng-click="openNewContent(item.newsType,item.contentId)">{{item.newsContent}}</a></div>
+                        <div class="col-sm-3 right">{{item.newsTime}}</div>
+                    </div>
+                    <div class="col-sm-12 tcenter">
+                        <nav>
+                            <ul class="pagination">
+                                <li><a ng-click="nextPage(-1,true)">&laquo;</a></li>
+                                <li ng-class="{'active':pageSize==pageActiveFlag}"><a ng-click="nextPage(pageSize)"><span ng-bind="pageSize"></span></a></li>
+                                <li ng-class="{'active':pageSize+1==pageActiveFlag}"><a ng-click="nextPage(pageSize+1)"><span ng-bind="pageSize+1"></span></a></li>
+                                <li ng-class="{'active':pageSize+2==pageActiveFlag}"><a ng-click="nextPage(pageSize+2)"><span ng-bind="pageSize+2"></span></a></li>
+                                <li ng-class="{'active':pageSize+3==pageActiveFlag}"><a ng-click="nextPage(pageSize+3)"><span ng-bind="pageSize+3"></span></a></li>
+                                <li ng-class="{'active':pageSize+4==pageActiveFlag}"><a ng-click="nextPage(pageSize+4)"><span ng-bind="pageSize+4"></span></a></li>
+                                <li><a ng-click="nextPage(1,true)">&raquo;</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--右侧排行榜-->
+
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">传题榜</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="rankings" ng-repeat="item in rankingList.upLoadRank">
+                        <span>{{item.rowId}}</span>
+                        <span><a ng-click="openSelfInfo(item.account)">{{item.name}}</a></span>
+                        <span class="right">{{item.num}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">做题榜</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="rankings" ng-repeat="item in rankingList.doingRank">
+                        <span>{{item.rowId}}</span>
+                        <span><a ng-click="openSelfInfo(item.account)">{{item.name}}</a></span>
+                        <span class="right">{{item.num}}</span>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="panel panel-default">-->
+                <!--<div class="panel-heading" style="padding-bottom: 0px;border-bottom-width: 0px;">-->
+                    <!--<ul class="nav nav-tabs" role="tablist">-->
+                        <!--<li role="presentation" class="active"><a>周榜</a></li>-->
+                        <!--<li role="presentation"><a>月榜</a></li>-->
+                        <!--<li role="presentation"><a>总榜</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="panel-body">-->
+                    <!--&lt;!&ndash;<div class="panel panel-default">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="panel-heading">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<h3 class="panel-title">大乱斗榜</h3>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="panel-body">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="rankings">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>1</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>叫我教授</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="right">1125</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="rankings">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>1</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>叫我教授</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="right">1125</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="rankings">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>1</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>叫我教授</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="right">1125</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="rankings">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>1</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>叫我教授</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="right">1125</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="rankings">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>1</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>叫我教授</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="right">1125</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="rankings">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>1</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>叫我教授</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="right">1125</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<div class="panel panel-default">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="panel-heading">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<h3 class="panel-title">传题榜</h3>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="panel-body">&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<div class="rankings" ng-repeat="item in rankingList.upLoadRank">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span>{{item.rowId}}</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span><a ng-click="openSelfInfo(item.account)">{{item.name}}</a></span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span class="right">{{item.num}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<div class="panel panel-default">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="panel-heading">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<h3 class="panel-title">做题榜</h3>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="panel-body">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="rankings" ng-repeat="item in rankingList.doingRank">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span>{{item.rowId}}</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span><a ng-click="openSelfInfo(item.account)">{{item.name}}</a></span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span class="right">{{item.num}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<div class="panel panel-default">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="panel-heading">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<h3 class="panel-title">财富榜</h3>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="panel-body">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="rankings">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>1</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>叫我教授</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="right">1125</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="rankings">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>1</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>叫我教授</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="right">1125</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="rankings">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>1</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span>叫我教授</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="right">1125</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
+

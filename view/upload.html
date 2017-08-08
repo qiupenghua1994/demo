@@ -1,0 +1,11 @@
+<div gf-form-dialog>
+    <div class="col-sm-12">
+        Profile Picture: <input type="file" ngf-select ng-model="picFile" name="file" ngf-accept="'image/*,.txt'" required>
+        <button ng-click="upload(picFile)">上传</button>
+        <button ng-click="download(picFile)">下载</button>
+        <form action="paper.file.DownLoadServlet" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8" method="post">
+            上传用户：<input type="text" name="filename"><br/>
+            <input type="submit" value="提交">
+        </form>
+    </div>
+</div>

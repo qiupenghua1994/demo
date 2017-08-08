@@ -1,0 +1,240 @@
+<!--管理界面-->
+
+<!--页签-->
+<div class="col-sm-12">
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="active">
+            <a aria-controls="underway" role="tab" data-toggle="tab" ng-click="changeTab(1)">试题审批</a>
+        </li>
+        <li role="presentation">
+            <a aria-controls="finish" role="tab" data-toggle="tab" ng-click="changeTab(2)">论坛管理</a>
+        </li>
+        <li role="presentation">
+            <a aria-controls="finish" role="tab" data-toggle="tab" ng-click="changeTab(3)">试题管理</a>
+        </li>
+    </ul>
+</div>
+
+<!--内容-->
+<!--待审批列表-->
+<div class="col-sm-12" ng-if="tabFlag==1" >
+    <!--列表栏-->
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="height: 40px;padding-top: 3px;padding-bottom: 3px;">
+            <div class="col-sm-4">
+                <div class="row">
+                    <h4 style="margin-top: 8px;">待审批列表：{{data.length}}条</h4>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-bordered">
+                <tbody>
+                <tr>
+                    <td style="    width: 100px;">试题编号</td>
+                    <td style="    width: 100px;">上传人ID</td>
+                    <td style="    width: 100px;">上传时间</td>
+                    <td style="    width: 100px;">试题类型</td>
+                    <td >题目</td>
+                    <td ng-if="isAdmin" style=" width: 99px;">操作</td>
+                </tr>
+                <tr ng-repeat="work in data">
+                    <td>{{work.id}}</td>
+                    <td>{{work.account}}</td>
+                    <td>{{work.createTime}}</td>
+                    <td>{{work.type|examTypeFilter}}</td>
+                    <td>{{work.question}}</td>
+                    <td ng-if="isAdmin">
+                        <a ng-click="auditOperation(work.id)">操作</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12" ng-if="tabFlag==1 && !isAdmin " >
+    <!--列表栏-->
+    <div class="panel panel-danger">
+        <div class="panel-heading" style="height: 40px;padding-top: 3px;padding-bottom: 3px;">
+            <div class="col-sm-4">
+                <div class="row">
+                    <h4 style="margin-top: 8px;">被拒绝列表：{{data_1.length}}条</h4>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-bordered">
+                <tbody>
+                <tr>
+                    <td style="    width: 100px;">试题编号</td>
+                    <td style="    width: 100px;">上传人ID</td>
+                    <td style="    width: 100px;">上传时间</td>
+                    <td style="    width: 100px;">试题类型</td>
+                    <td >题目</td>
+                    <td ng-if="isAdmin" style=" width: 99px;">操作</td>
+                </tr>
+                <tr ng-repeat="work in data_1">
+                    <td>{{work.id}}</td>
+                    <td>{{work.account}}</td>
+                    <td>{{work.createTime}}</td>
+                    <td>{{work.type|examTypeFilter}}</td>
+                    <td>{{work.question}}</td>
+                    <td ng-if="isAdmin">
+                        <a ng-click="auditOperation(work.id)">操作</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12" ng-if="tabFlag==1 && !isAdmin " >
+    <!--列表栏-->
+    <div class="panel panel-success">
+        <div class="panel-heading" style="height: 40px;padding-top: 3px;padding-bottom: 3px;">
+            <div class="col-sm-4">
+                <div class="row">
+                    <h4 style="margin-top: 8px;">通过列表：{{data_2.length}}条</h4>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-bordered">
+                <tbody>
+                <tr>
+                    <td style="    width: 100px;">试题编号</td>
+                    <td style="    width: 100px;">上传人ID</td>
+                    <td style="    width: 100px;">上传时间</td>
+                    <td style="    width: 100px;">试题类型</td>
+                    <td >题目</td>
+                    <td ng-if="isAdmin" style=" width: 99px;">操作</td>
+                </tr>
+                <tr ng-repeat="work in data_2">
+                    <td>{{work.id}}</td>
+                    <td>{{work.account}}</td>
+                    <td>{{work.createTime}}</td>
+                    <td>{{work.type|examTypeFilter}}</td>
+                    <td>{{work.question}}</td>
+                    <td ng-if="isAdmin">
+                        <a ng-click="auditOperation(work.id)">操作</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--最近新贴-->
+<div class="col-sm-12" ng-if="tabFlag==2" >
+    <!--列表栏-->
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="height: 40px;padding-top: 3px;padding-bottom: 3px;">
+            <div class="col-sm-4">
+                <div class="row">
+                    <h4 style="margin-top: 8px;">最近新贴：{{data.length}}条</h4>
+                </div>
+            </div>
+            <div class="col-sm-8 form-inline tright">
+                <div class="row">
+                    <select class="form-control" ng-change="refresh()" ng-model="q.type">
+                        <option value="">请选择类别</option>
+                        <option value="101">信息处理技术员</option>
+                        <option value="102">程序员</option>
+                        <option value="103">网络管理员</option>
+                        <option value="201">软件设计师</option>
+                        <option value="202">网络工程师</option>
+                        <option value="203">嵌入式系统设计师</option>
+                        <option value="301">电子商务设计师</option>
+                        <option value="302">信息系统项目管理师</option>
+                        <option value="303">系统架构师</option>
+                        <option value="304">网络规划师</option>
+                    </select>
+                    <input type="text" class="form-control" placeholder="关键字搜索" ng-model="q.key">
+                    <button type="button" class="btn-primary btn " ng-click="refresh()">刷新</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-bordered">
+                <tbody>
+                <tr>
+                    <td>编号</td>
+                    <td>类型</td>
+                    <td>创建人</td>
+                    <td>创建时间</td>
+                    <td>主题</td>
+                    <td>内容</td>
+                    <td>操作</td>
+                </tr>
+                <tr ng-repeat="work in data">
+                    <td>{{work.id}}</td>
+                    <td>{{work.type|examTypeFilter}}</td>
+                    <td>{{work.account}}</td>
+                    <td>{{work.creatTime}}</td>
+                    <td>{{work.themeName}}</td>
+                    <td>{{work.content}}</td>
+                    <td>
+                        <a ng-click="delDiscussion(work.id)">删帖</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--试题管理-->
+<div class="col-sm-12" ng-if="tabFlag==3" >
+    <!--列表栏-->
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="height: 40px;padding-top: 3px;padding-bottom: 3px;">
+            <div class="col-sm-4">
+                <div class="row">
+                    <h4 style="margin-top: 8px;">试题管理：{{data.length}}条</h4>
+                </div>
+            </div>
+            <div class="col-sm-8 form-inline tright">
+                <div class="row">
+                    <select class="form-control" ng-change="refresh()" ng-model="q.type">
+                        <option value="">请选择类别</option>
+                        <option value="101">信息处理技术员</option>
+                        <option value="102">程序员</option>
+                        <option value="103">网络管理员</option>
+                        <option value="201">软件设计师</option>
+                        <option value="202">网络工程师</option>
+                        <option value="203">嵌入式系统设计师</option>
+                        <option value="301">电子商务设计师</option>
+                        <option value="302">信息系统项目管理师</option>
+                        <option value="303">系统架构师</option>
+                        <option value="304">网络规划师</option>
+                    </select>
+                    <input type="text" class="form-control" placeholder="关键字搜索" ng-model="q.key">
+                    <button type="button" class="btn-primary btn " ng-click="refresh()">刷新</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-bordered">
+                <tbody>
+                <tr>
+                    <td style="    width: 100px;">试题编号</td>
+                    <td style="    width: 100px;">上传时间</td>
+                    <td style="    width: 100px;">试题类型</td>
+                    <td >题目</td>
+                    <td style="width: 99px;">操作</td>
+                </tr>
+                <tr ng-repeat="work in data">
+                    <td>{{work.id}}</td>
+                    <td>{{work.createTime}}</td>
+                    <td>{{work.type|examTypeFilter}}</td>
+                    <td>{{work.question}}</td>
+                    <td>
+                        <a ng-click="manageQuestion(work.id)">操作</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

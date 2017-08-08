@@ -1,0 +1,18 @@
+<!--最新动态-->
+<div class="panel panel-default">
+    <div class="panel-heading">历史动态</div>
+    <div class="panel-body" style="overflow-y: auto;height: 498px;">
+        <div class="col-sm-12 news" ng-repeat="item in hisData">
+            <!--<div class="col-sm-3">{{item.newsTime}}</div>-->
+            <!--<div class="col-sm-1">{{item.newsType}}</div>-->
+            <!--<div class="col-sm-8 text-overfolw-ellipsis-2">-->
+                <!--<a  ng-click="openNewContent(item.newsType,item.contentId)">{{item.newsContent}}</a>-->
+            <!--</div>-->
+            <div style="display: inline;width: 105px;">{{item.newsTime}}</div>
+            <div style="display: inline;width: 50px;">{{item.newsType}}</div>
+            <div style="display: inline" class=" text-overfolw-ellipsis-2">
+                <a  ng-click="openNewContent(item.newsType,item.contentId)">{{item.newsContent}}</a>
+            </div>
+        </div>
+    </div>
+</div>

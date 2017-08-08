@@ -1,0 +1,34 @@
+<form gf-form-dialog name="dialog" save-button="确定">
+    <div class="col-sm-12">
+        <h4 style="text-align: center">确认删除？</h4>
+
+    </div>
+</form>
+
+
+<div class="ag-menu-column-select-wrapper">
+    <div class="ag-filter-header-container">
+        <input class="ag-filter-filter" style="width: 90%;" ng-model="$columnCtrl.filterText" text="text"
+               placeholder="搜索...">
+    </div>
+    <div></div>
+</div>
+
+<div ag-grid="$gridCtrl.gfGrid.agGrid" class="ag-blue gf-grid"></div>
+<div class="gf-grid-status-bar" ng-show="$gridCtrl.gfGrid.statusBar">
+
+    <span>总记录数:</span>
+    <span ng-bind="$gridCtrl.agGrid.api.getFilterRowCount()"></span>
+    <span ng-show="$gridCtrl.gfGrid.selectedCount>0 && $gridCtrl.gfGrid.multiSelect">
+        <span class="status-bar">选中行数:<span ng-bind="$gridCtrl.agGrid.selectedCount"></span></span>
+        <span class="font-red" title="最大可选中行数">/{{$gridCtrl.gfGrid.maxSelectRowCount}}</span>
+        <a ng-click="$gridCtrl.gfGrid.api.clearSelection()">清空选择</a>
+    </span>
+    <span ng-show="$gridCtrl.gfGrid.filterDisplayName">
+        <span class="status-gap" title="{{$gridCtrl.gfGrid.filterDisplayName}}">
+            过滤条件:<b class="filter-text" ng-bind="$gridCtrl.gfGrid.filterDisplayName"></b>
+        </span>
+        <a ng-click="$gridCtrl.gfGrid.api.clearFilter()">清空过滤</a>
+    </span>
+    <span class="error" ng-bind="$gridCtrl.gfGrid.lastError"></span>
+</div>

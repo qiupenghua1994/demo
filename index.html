@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+<>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--引用的 -->
+    <!--/paper/WebRoot/-->
+    <script type="text/javascript" src="js/jquery-min-v1.11.3.js"></script>
+    <script type="text/javascript" src="js/angular.min.v1.5.8.js"></script>
+    <script type="text/javascript" src="js/angular-cookies-v1.5.8.js"></script>
+    <script type="text/javascript" src="js/angular-ui-router.v0.3.1.js"></script>
+    <script type="text/javascript" src="js/ui-bootstrap-tpls-v2.0.1.js"></script>
+    <script type="text/javascript" src="js/ocLazyLoad.js"></script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/notify/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/notify/notificationFx.js"></script>
+    <script type="text/javascript" src="js/notify/classie.js"></script>
+    <script type="text/javascript" src="js/file/ng-file-upload.js"></script>
+    <script type="text/javascript" src="js/file/ng-file-upload-all.js"></script>
+    <script type="text/javascript" src="js/grid/ag-grid.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/notify/ns-default.css">
+    <link rel="stylesheet" type="text/css" href="css/notify/ns-style-growl.css">
+    <link rel="stylesheet" type="text/css" href="css/grid/theme-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/grid/grid.css">
+
+
+    <!--自己的 -->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/my.css">
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/directive.js"></script>
+    <script type="text/javascript" src="app/common.js"></script>
+    <script type="text/javascript" src="app/filter.js"></script>
+    <script type="text/javascript" src="app/grid.js"></script>
+    <script type="text/javascript" src="app/conn.js"></script>
+    <script type="text/javascript" src="controller/Index.js"></script>
+    <!--<script type="text/javascript" src="controller/PerInfoCtrl.js"></script>-->
+    <script type="text/javascript" src="controller/DiscussionCtrl.js"></script>
+    <script type="text/javascript" src="controller/ExamCtrl.js"></script>
+    <script type="text/javascript" src="controller/HomeCtrl.js"></script>
+    <script type="text/javascript" src="controller/GridCtrl.js"></script>
+    <script type="text/javascript" src="controller/CommonCtrl.js"></script>
+    <script type="text/javascript" src="controller/ManageCtrl.js"></script>
+    <script type="text/javascript" src="service/AllService.js"></script>
+
+    <!--所有的插件和页面样式必须加载在 golbal 和 css样式之间 用于懒加载-->
+    <link id="ng_load_plugins_before">
+
+</header>
+<body ng-app="app" ng-controller="IndexController" style="background-color:#eee">
+
+<!--头部导航-->
+<div class="col-sm-12" style="height: 66px">
+    <div class="row">
+        <header class="site-nav">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="container-fluid" style="max-width: 1200px;margin:0 auto">
+                    <!--当窗口太小时，显示一个下拉菜单按钮-->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" >考梦网</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">首页</a></li>
+                            <li><a href="#/exam">学习</a></li>
+                            <li><a href="#discussion">论坛</a></li>
+                            <li><a href="#manage">管理</a></li>
+                            <li><a href="#/javaScript">系统管理</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li ng-if="!loginFlag"><a data-toggle="modal" data-target="#login_Dialog">登录</a></li>
+                            <li ng-if="loginFlag" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" ng-bind="user.name"><span
+                                        class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a ng-click="openPerInfo()">个人中心</a></li>
+                                    <li><a ng-click="editPwdClick()">密码修改</a></li>
+                                    <!--<li><a ng-click="" href="#">意见反馈</a></li>-->
+                                    <li class="divider"></li>
+                                    <li><a ng-click="logout()">注销</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+</div>
+<div class="col-sm-12" style="min-height: 556px">
+    <div class="row">
+        <!--路由显示区-->
+        <div ui-view></div>
+    </div>
+</div>
+<!--底部-->
+<div class="col-sm-12">
+    <div class="row">
+        <footer class="footer">
+            <div class="col-sm-12 tcenter" style="padding: 15px;background-color: #000000;color: #5e5e5e">
+                版权所有：仇鹏骅 联系方式15728009051，邮箱947946592@163.com
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+<!--登录弹窗-->
+<div class="modal fade" id="login_Dialog" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:300px;margin: 0 auto;top: 50px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    登录
+                </h4>
+            </div>
+            <div class="modal-body" style="height: 200px;">
+                <form name="loginForm">
+                <span>账号：</span>
+                <input class="form-control" ng-model="user.account" required>
+                <span>密码：</span>
+                <input class="form-control" type="password" ng-model="user.pwd" required>
+                <label ng-show="showLoginError" style="color: red;">账号或密码错误</label>
+                <label style="float: right;padding: 3px"><a ng-click="forgetPwd()">忘记密码</a> |
+                    <a data-toggle="modal" data-target="#register_Dialog" data-dismiss="modal"
+                       ng-click="reset()">立即注册</a></label>
+                <button type="button" class="form-control col-sm-12 btn btn-primary" ng-click="loginClick()" ng-disabled="loginForm.$invalid">立即登录
+                </button>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+
+<!--注册弹窗-->
+<div class="modal fade" id="register_Dialog" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class=" modal-dialog" ng-init="user">
+        <div class="modal-content row" style="width:300px;margin: 0 auto;top: 50px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    注册
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form name="registForm">
+                    <span>账号：</span><span style="color: red" ng-show="user.verityAccountFlag=='false'">账号已存在！</span>
+                    <input class="form-control" ng-blur="verifyAccount()" ng-model="user.account" required>
+                    <span>密码：</span>
+                    <input class="form-control" type="password" ng-blur="pwdverify()" ng-model="user.pwd" required>
+                    <span>确认密码：</span><span style="color: red" ng-show="user.pwdverifyFlag">密码不一致！</span>
+                    <input class="form-control" type="password" ng-blur="pwdverify()" ng-model="user.pwdTwo" required>
+                    <span>昵称：</span>
+                    <input class="form-control" ng-model="user.name" required>
+                    <h5 style="text-align: right;padding: 3px">已有账号
+                        <a data-toggle="modal" data-target="#login_Dialog"
+                                                                      data-dismiss="modal" ng-click="reset()">立即登录</a>
+                    </h5>
+                    <button type="button" style="margin-bottom:10px; " class="form-control  col-sm-12 btn btn-primary"
+                            ng-click="registerClick()"
+                            ng-disabled="registForm.$invalid ||user.verityAccountFlag=='false' || user.pwdverifyFlag ">
+                        注册并登录
+                    </button>
+                </form>
+            </div>
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+
+</body>
+</html>

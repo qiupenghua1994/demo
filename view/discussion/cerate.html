@@ -1,0 +1,23 @@
+<!--发帖 新建讨论-->
+<form gf-form-dialog name="dialog">
+    <div class="col-sm-6" style="margin-bottom: 5px;">
+        <select class="form-control" ng-model="data.type">
+            <option value="">选择类别</option>
+            <option value="101">信息处理技术员</option>
+            <option value="102">程序员</option>
+            <option value="103">网络管理员</option>
+            <option value="201">软件设计师</option>
+            <option value="202">网络工程师</option>
+            <option value="203">嵌入式系统设计师</option>
+            <option value="301">电子商务设计师</option>
+            <option value="302">信息系统项目管理师</option>
+            <option value="303">系统架构师</option>
+            <option value="304">网络规划师</option>
+        </select>
+    </div>
+    <div class="col-sm-12" style="margin-bottom: 5px;">
+        <input type="text" class="form-control" placeholder="请填写标题" ng-model="data.themeName" required>
+    </div>
+        <textarea class="form-control" rows="8" placeholder="正文" ng-model="data.content" required></textarea>
+    </div>
+</form>

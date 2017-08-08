@@ -1,0 +1,247 @@
+body {
+    background-color: #eee;
+    /*max-width: 1200px;*/
+    /*margin:0 auto;*/
+}
+
+a {
+    cursor: pointer;
+}
+
+h4 {
+    margin: 0 0 0 0;
+}
+
+/*方位*/
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.fleft {
+    float: left;
+}
+
+.fright {
+    float: right;
+}
+
+/*颜色*/
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+}
+
+.white {
+    color: #fff;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.navbar {
+    height: 52px;
+    margin-bottom: 10px;
+}
+
+.nav {
+    margin-bottom: 10px;
+}
+
+.nav-pills {
+    border-bottom: 1px solid #428bca;
+}
+
+.nav-pills > li.active > a {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.toolbar {
+    margin-bottom: 3px;
+}
+
+.nav-toolbar {
+    position: absolute;
+    right: 15px;
+    top: 36px;
+    z-index:1;
+}
+
+.btn-primary > a, .btn-danger > a, .btn-warning > a {
+    color: #ffffff;
+}
+
+/*伪页签*/
+.unnav {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #428bca;
+}
+
+.unnav-child {
+    color: #fff;
+    background-image: linear-gradient(to bottom, #428bca 0%, #357ebd 100%);
+    border: 1px solid #428bca;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    width: 150px;
+    text-align: center;
+}
+
+/*伪线条*/
+.unline {
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #cccccc;
+}
+
+/*基本表单*/
+.content-name {
+    text-align: right;
+    padding-top: 5px;
+    padding-right: 0;
+}
+
+.content-detail {
+    margin-bottom: 5px;
+    /* padding-left: 5px; */
+    padding-left: 0;
+}
+
+/*container-fluid下的栅格padding全部取消，主要用于弹框中使用*/
+.container-fluid > .col-sm-1, .container-fluid > .col-sm-2, .container-fluid > .col-sm-3, .container-fluid > .col-sm-4,
+.container-fluid > .col-sm-5, .container-fluid > .col-sm-6, .container-fluid > .col-sm-7, .container-fluid > .col-sm-8,
+.container-fluid > .col-sm-9, .container-fluid > .col-sm-10, .container-fluid > .col-sm-11, .container-fluid > .col-sm-12,
+.container-fluid > .col-sm-12 > .col-sm-4, .container-fluid > .col-sm-12 > .col-sm-6,
+.container-fluid > .col-sm-12 > .col-sm-8 {
+    padding: 0;
+}
+
+.img-right {
+    position: relative;
+    height: 100%;
+}
+
+.img-right > img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    height: 100%;
+    margin-bottom: 5px;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+}
+
+/*.panel-body > .col-sm-1, .panel-body > .col-sm-2, .panel-body > .col-sm-3, .panel-body > .col-sm-4,*/
+/*.panel-body > .col-sm-5, .panel-body > .col-sm-6, .panel-body > .col-sm-7, .panel-body > .col-sm-8,*/
+/*.panel-body > .col-sm-9, .panel-body > .col-sm-10, .panel-body > .col-sm-11, .panel-body > .col-sm-12,*/
+/*.panel-body > .col-sm-9 > .col-sm-12, .panel-body > .col-sm-9 > .col-sm-12 > .col-sm-4,*/
+/*.panel-body > .col-sm-12 > .col-sm-3 {*/
+    /*padding: 0;*/
+/*}*/
+
+.padding0 {
+    padding: 0;
+}
+
+.panel {
+    margin-bottom: 10px;
+}
+
+.panel-primary-search {
+    padding: 15px;
+    border: 1px solid #428bca;
+    border-top: 5px solid #428bca;
+}
+
+.form-inline > input, .form-inline > button, .form-inline > select {
+    margin-bottom: 4px;
+}
+
+/*页头*/
+
+/*排行榜*/
+.rankings {
+    border-bottom: 1px dashed #ccc;
+    padding: 5px;
+}
+
+/*新闻*/
+.news {
+    border-bottom: 1px dashed #ccc;
+    padding: 5px;
+}
+
+/*排行榜下的栅格去除内边框*/
+.news .col-sm-1, .news .col-sm-2 {
+    padding: 0px;
+}
+
+/*考题边框*/
+.question {
+    /*border: 1px solid #ccc;*/
+    padding: 5px;
+    /*margin-bottom: 3px;*/
+}
+
+.question .list-group-item {
+    padding: 3px;
+}
+
+.question .list-group .active {
+    background-color: #e0e0e0;
+}
+
+.redColor {
+    background-color: red;
+}
+
+/*输入框name*/
+.name {
+    text-align: right;
+    margin: 5px 0px 0px 0px;
+    padding: 0;
+}
+
+/*input输入内容*/
+.input-detail {
+    text-align: left;
+    margin: 5px 0px 0px 0px;
+    padding: 0;
+}
+
+/*底部信息开始*/
+.footer-level1 {
+    background-color: #428bca;
+    position: relative; /*添加相对定位，就相当于给子盒子一个限定范围*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid #428bca;
+}
+
+.footer-level1 a:hover {
+    color: deeppink;
+}
+
+.footer-level2 {
+    /*background-color: #428bca;*/
+    color: #ffffff;
+    /*background-image: linear-gradient(to bottom, #fff 0%, #e0e0e0 100%);*/
+    background-image: linear-gradient(to bottom, #428bca 0%, #357ebd 100%);
+    position: relative; /*添加相对定位，就相当于给子盒子一个限定范围*/
+    padding: 15px 0 15px 0;
+    border-radius: 3px;
+}
+
+/*底部信息结束*/

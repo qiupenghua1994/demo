@@ -1,0 +1,79 @@
+<form gf-form-dialog name="dialog" footer-template-url="false" ele-header="false"
+      style="padding-bottom: 0;padding-top: 0">
+    <div class="modal-header">
+        <button gf-button-close type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 ng-if="flag=='everRead'">已读提醒信息详情</h4>
+        <h4 ng-if="flag=='neverRead'">未读提醒信息详情</h4>
+        <h4 ng-if="flag=='everSend'">已发送提醒信息详情</h4>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="col-sm-6">
+                <div class="col-sm-4 content-name">创建人id:</div>
+                <div class="col-sm-8 content-detail">
+                    <input class="form-control" ng-model="data.sendID" readonly>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-4 content-name">创建人姓名:</div>
+                <div class="col-sm-8 content-detail">
+                    <input class="form-control" ng-model="data.sendName" readonly>
+                </div>
+            </div>
+            <div class="col-sm-6" >
+                <div class="col-sm-4 content-name">创建人身份:</div>
+                <div class="col-sm-8 content-detail">
+                    <input class="form-control" ng-model="data.sendType" readonly>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-4 content-name">收件人id:</div>
+                <div class="col-sm-8 content-detail">
+                    <input class="form-control" ng-model="data.receiveID" readonly>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-4 content-name">收件人姓名:</div>
+                <div class="col-sm-8 content-detail">
+                    <input class="form-control" ng-model="data.receiveName" readonly>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-4 content-name">收件人身份:</div>
+                <div class="col-sm-8 content-detail">
+                    <input class="form-control" ng-model="data.receiveType" readonly>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-4 content-name">主题:</div>
+                <div class="col-sm-8 content-detail">
+                    <input class="form-control" ng-model="data.theme" readonly>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-2 content-name">提醒内容:</div>
+                <div class="col-sm-10 content-detail">
+                    <textarea class="form-control" rows="3" ng-bind="data.content"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-4 content-name">提醒时间:</div>
+                <div class="col-sm-8 content-detail">
+                    <input class="form-control" ng-model="data.time" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer right" ng-if="flag=='everRead'">
+        <button gf-button-close type="button" class="btn btn-default">返回</button>
+        <button type="button" class="btn btn-danger" ng-click="del()"> 删除</button>
+    </div>
+    <div class="modal-footer right" ng-if="flag=='neverRead'">
+        <button type="button" class="btn btn-primary" ng-click="read()">已读</button>
+        <button gf-button-close type="button" class="btn btn-default" ng-click="">返回</button>
+        <button type="button" class="btn btn-danger" ng-click="del()"> 删除</button>
+    </div>
+    <div class="modal-footer right" ng-if="flag=='everSend'">
+        <button gf-button-close type="button" class="btn btn-default">返回</button>
+    </div>
+</form>

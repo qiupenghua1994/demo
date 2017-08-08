@@ -1,0 +1,53 @@
+<!--审批操作-->
+<form gf-form-dialog name="dialog" style="padding: 0px 14px 0 14px;" footer-template-url="false">
+       <div class="modal-body">
+           <div class="col-sm-12 ">
+
+               <label  class="col-sm-12">
+                   <span ng-bind="item.question"></span>
+               </label>
+
+               <!--单选题-->
+               <div ng-if="item.questionType == 1"
+                    class="col-sm-12 "
+                    ng-repeat="options in item.questionOptions"
+                    ng-click="changeOption(options.option)">
+                   <div><span>{{options.option}}</span>:<span>{{options.detail}}</span></div>
+               </div>
+               <!--多选题-->
+               <div ng-if="item.questionType == 2"
+                    class="col-sm-12 "
+                    ng-repeat="options in item.questionOptions"
+                    ng-click="options.check = !options.check" ng-init="options.check = false">
+                   <div><span>{{options.option}}</span>:<span>{{options.detail}}</span></div>
+               </div>
+               <!--判断题-->
+               <div ng-if="item.questionType == 3"
+                    class="col-sm-12 "
+                    ng-repeat="options in item.questionOptions"
+                    ng-click="changeOption(options.option)">
+                   <div><span>{{options.option}}</span></div>
+               </div>
+               <!--填空题-->
+               <div ng-if="item.questionType == 4"
+                    class="col-sm-12 filling" ng-repeat="options in item.questionOptions">
+                   <div>
+                       <div><span>{{options.option}}</span>:<span>{{options.detail}}</span></div>
+                   </div>
+               </div>
+               <div class="col-sm-12">
+                   <div>
+                       <span>解析：</span><span>{{item.analysis.why}}</span>
+                   </div>
+               </div>
+
+
+           </div>
+       </div>
+       <div class="modal-footer col-sm-12 right">
+               <button type="button" class="btn btn-primary" ng-click="save()">通过</button>
+               <button type="button" class="btn btn-danger" ng-click="fail()"> 拒绝</button>
+
+       </div>
+
+</form>

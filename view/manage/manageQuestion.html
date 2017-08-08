@@ -1,0 +1,138 @@
+<!--试题管理-->
+<form gf-form-dialog name="dialog" style="padding: 0px 14px 0 14px;" footer-template-url="false">
+    <div class="modal-body">
+        <div class="col-sm-12 ">
+
+            <label  class="col-sm-12">
+                <span ng-bind="item.question"></span>
+            </label>
+
+            <!--单选题-->
+            <div ng-if="item.questionType == 1"
+                 class="col-sm-12 "
+                 ng-repeat="options in item.questionOptions"
+                 ng-click="changeOption(options.option)">
+                <div><span>{{options.option}}</span>:<span>{{options.detail}}</span></div>
+            </div>
+            <!--多选题-->
+            <div ng-if="item.questionType == 2"
+                 class="col-sm-12 "
+                 ng-repeat="options in item.questionOptions"
+                 ng-click="options.check = !options.check" ng-init="options.check = false">
+                <div><span>{{options.option}}</span>:<span>{{options.detail}}</span></div>
+            </div>
+            <!--判断题-->
+            <div ng-if="item.questionType == 3"
+                 class="col-sm-12 "
+                 ng-repeat="options in item.questionOptions"
+                 ng-click="changeOption(options.option)">
+                <div><span>{{options.option}}</span></div>
+            </div>
+            <!--填空题-->
+            <div ng-if="item.questionType == 4"
+                 class="col-sm-12 filling" ng-repeat="options in item.questionOptions">
+                <div>
+                    <div><span>{{options.option}}</span>:<span>{{options.detail}}</span></div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div>
+                    <span>解析：</span><span>{{item.analysis.why}}</span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="modal-footer col-sm-12 right">
+        <button type="button" class="btn btn-danger" ng-click="del()">删除</button>
+        <button gf-button-close type="button" class="btn btn-default"> 取消</button>
+    </div>
+</form>
+
+<!--<form gf-form-dialog name="dialog" style="padding: 0px 14px 0 14px;" footer-template-url="false">-->
+    <!--<div class="modal-body">-->
+        <!--<div class="col-sm-12 rankings">-->
+            <!--<div class="row">-->
+                <!--<div class="col-sm-12">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-sm-12">-->
+                            <!--<div class="col-sm-12">-->
+                                <!--<textarea rows="3" placeholder="请输入题目" class="form-control" ng-model="questionOptions.question"-->
+                                          <!--required></textarea>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-12">-->
+            <!--<div class="row">-->
+                <!--<div ng-if="questionType==1 ||questionType==2||questionType==3||questionType==4">-->
+                    <!--<div ng-if='questionType==1 ||questionType==2||questionType==4'>-->
+                        <!--<div class="col-sm-12 rankings"-->
+                             <!--style="min-height: 79px;overflow-y: auto;max-height: 200px;">-->
+                            <!--<div class="col-sm-4 col-lg-3" ng-repeat="item in questionOptions.questionOptions">-->
+                                <!--<div class="col-sm-1 name">{{item.option}}：</div>-->
+                                <!--<div class="col-sm-9 input-detail">-->
+                                                <!--<textarea rows="3" class="form-control" ng-model="item.detail"-->
+                                                          <!--required></textarea>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-12 rankings tcenter">-->
+                            <!--<button type="button" class="btn btn-success" ng-click="addQuestionOptions()">-->
+                                <!--<span class="glyphicon glyphicon-plus"></span>-->
+                            <!--</button>-->
+                            <!--<button type="button" class="btn btn-danger" ng-click="deleteQuestionOptions()">-->
+                                <!--<span class="glyphicon glyphicon-minus"></span>-->
+                            <!--</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-12" ng-if="questionType!=4">-->
+                        <!--<div class="col-sm-1 name">答案：</div>-->
+                        <!--&lt;!&ndash;单选&ndash;&gt;-->
+                        <!--<div class="col-sm-11 input-detail" ng-if="questionType==1">-->
+                            <!--<div class="col-sm-1 input-detail"-->
+                                 <!--ng-repeat="item in questionOptions.analysis">-->
+                                <!--<label><input type="radio" name="checkAnswer"-->
+                                              <!--value="{{item.option}}"-->
+                                              <!--ng-model="item.radio"-->
+                                              <!--required>{{item.option}}</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;多选&ndash;&gt;-->
+                        <!--<div class="col-sm-11 input-detail" ng-if="questionType==2">-->
+                            <!--<div class="col-sm-1 input-detail"-->
+                                 <!--ng-repeat="item in questionOptions.questionOptions" >-->
+                                <!--<label><input type="checkbox"-->
+                                              <!--ng-model="questionOptionsAnswer.check[item.option]">-->
+                                        <!--{{item.option}}</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-11 input-detail" ng-if="questionType==3">-->
+                            <!--<div class="col-sm-1 input-detail"-->
+                                 <!--ng-repeat="item in questionOptions.questionOptions">-->
+                                <!--<label><input type="radio" name="checkAnswer"-->
+                                              <!--value="{{item.option}}"-->
+                                              <!--ng-model="questionOptionsAnswer.radio"-->
+                                              <!--required>{{item.option}}</label>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-12">-->
+                    <!--<div class="col-sm-1 name">解析：</div>-->
+                    <!--<div class="col-sm-11 input-detail">-->
+                                                <!--<textarea rows="5" class="form-control"-->
+                                                          <!--ng-model="questionOptions.analysis.why" required></textarea>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div></div>-->
+    <!--<div class="modal-footer right">-->
+        <!--<button type="button" class="btn btn-primary" ng-click="save()">保修修改</button>-->
+        <!--<button type="button" class="btn btn-danger" ng-click="del()"> 删除</button>-->
+    <!--</div>-->
+<!--</form>-->

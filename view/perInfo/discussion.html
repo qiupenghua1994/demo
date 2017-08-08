@@ -1,0 +1,12 @@
+<!--论坛信息-->
+<div class="panel panel-default">
+    <div class="panel-heading">帖子历史</div>
+    <div class="panel-body" style="overflow-y: auto;height: 498px;width: 668px;">
+        <div class="col-sm-12 news" ng-repeat="item in hisData">
+            <div style="display: inline">{{item.creatTime}}</div>
+            <div style="display: inline" class=" text-overfolw-ellipsis-2">
+                <a ng-click="openNewContent(item.newsType,item.contentId)">{{item.themeName}}</a>
+            </div>
+        </div>
+    </div>
+</div>

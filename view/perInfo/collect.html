@@ -1,0 +1,107 @@
+<!--收藏-->
+<div class="panel panel-default" style="margin-bottom: 0;width: 675px;height: 540px">
+    <div class="panel-body">
+        <div class="col-sm-3 input-detail">
+            <select class="form-control">
+                <option>初级</option>
+                <option>中级</option>
+                <option>高级</option>
+            </select>
+        </div>
+        <div class="col-sm-3 input-detail">
+            <select class="form-control" ng-model="q.type" ng-changed="selectChanged()">
+                <option value="">请选择方向...</option>
+                <option value="202">软件</option>
+                <option value="201">网络</option>
+            </select>
+        </div>
+        <div class="col-sm-3 input-detail">
+            <select class="form-control" ng-model="q.questionType" ng-changed="selectChanged()">
+                <option value="">请选择题型...</option>
+                <option value="1">单选</option>
+                <option value="2">多选</option>
+                <option value="3">判断</option>
+                <option value="4">填空</option>
+            </select>
+        </div>
+        <div class="col-sm-12">
+            <div e-charts option="echartsOption" style="width: 600px;height: 100px;"></div>
+        </div>
+        <div class="row" style="height: 334px;width: 673px;overflow-y: auto;">
+            <div class="col-sm-12 news" ng-repeat="item in latestData">
+                <div ng-click="showContent(item.id)">
+                    <div class="col-sm-7"><b><a>{{item.question}}</a></b></div>
+                    <div class="right">{{item.createTime}}</div>
+                    <!--<div class="col-sm-12">{{item.digest}}</div>-->
+                </div>
+                <div class="col-sm-12 questionOptions" ng-show="questionOptionsShowFlag==item.id">
+                    <!--单选题-->
+                    <div ng-if="item.questionType == 1"
+                         class="col-sm-6 ecamOptions" ng-class="{active:nowOption==options.option}"
+                         ng-repeat="options in item.questionOptions"
+                         ng-click="changeOption(options.option)">
+                        <div><span>{{options.option}}</span>:<span>{{options.detail}}</span></div>
+                    </div>
+                    <!--多选题-->
+                    <div ng-if="item.questionType == 2"
+                         class="col-sm-6 ecamOptions" ng-class="{active:options.check}"
+                         ng-repeat="options in item.questionOptions"
+                         ng-click="options.check = !options.check" ng-init="options.check = false">
+                        <div><span>{{options.option}}</span>:<span>{{options.detail}}</span></div>
+                    </div>
+                    <!--判断题-->
+                    <div ng-if="item.questionType == 3"
+                         class="col-sm-6 ecamOptions" ng-class="{active:nowOption==options.option}"
+                         ng-repeat="options in item.questionOptions"
+                         ng-click="changeOption(options.option)">
+                        <div><span>{{options.option}}</span></div>
+                    </div>
+                    <!--填空题-->
+                    <div ng-if="item.questionType == 4"
+                         class="col-sm-6 filling" ng-repeat="options in item.questionOptions">
+                        <div>
+                            <span>{{options.option}}:</span>
+                            <input type="text" ng-model="options.myAnswer">
+                                <span ng-show="fillingAnswerFlag">
+                                    <span ng-show="options.result" style="color: green"
+                                          class="glyphicon glyphicon-ok"></span>
+                                    <span ng-show="!options.result" style="color: red"
+                                          class="glyphicon glyphicon-remove"></span>
+                                </span>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-primary"
+                                        ng-click="submitAnswer(item)">
+                                    <span class="glyphicon glyphicon-ok"></span>提交
+                                </button>
+                                <button type="button" class="btn btn-sm btn-default"
+                                        ng-click="changeAnalysisFlag(item.$$hashKey)">解析
+                                </button>
+                                <button type="button" class="btn btn-sm btn-warning"
+                                        ng-click="cancleCollect(item)">
+                                    <span class="glyphicon glyphicon-star"></span>取消收藏
+                                </button>
+                            </div>
+                                <span ng-show="isSubmit">
+                                    <span ng-show="!fillingAnswerFlag">
+                                        <span ng-show="answerResult">回答正确！</span>
+                                        <span ng-show="!answerResult" style="color: red">回答错误！</span>
+                                    </span>
+                                    <span ng-show="!answerQuestionResp">您已经做过该题了！</span>
+                                    <span ng-show="answerQuestionResp">积分{{score}}</span>
+                                </span>
+                        </div>
+                        <div ng-show="showAnalysisFlag==item.$$hashKey">
+                            <span>解析：</span><span>{{item.analysis.why}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

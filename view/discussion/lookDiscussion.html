@@ -1,0 +1,80 @@
+<!--帖子 回复界面-->
+<div>
+    <div class="discusstion-content-handle text-overfolw-ellipsis">
+            <span title="{{args.themeName}}" ng-bind="args.themeName"></span>
+    </div>
+    <!--帖子的内容-->
+    <div class="discusstion-content">
+        <div class="content-left">
+            <img ng-src="{{args.portrait}} ">
+            <label><a ng-click="openSelfInfo(args.account)" ng-bind="args.name"></a></label>
+        </div>
+        <div class="content-right">
+            <div  class="right-content">
+                <span ng-bind="args.content"></span>
+            </div>
+            <div  class="right-reply">
+                <div class="right-reply-toolbar">
+                    <span>1楼</span>&nbsp;
+                    <span ng-bind="args.creatTime"></span>
+                    <a href="" ng-click="replyDiscussion(args,false)">回复</a>&nbsp;
+                </div>
+
+            </div>
+
+        </div>
+        <div class="clear-float"></div>
+    </div>
+    <!--别人的回复-->
+    <div class="discusstion-content" ng-repeat="item in contentList">
+        <!--<div ng-init="replyFlag= item.child.length>0?true:false">-->
+        <div>
+            <div class="content-left">
+                <img ng-src="{{item.portrait}}">
+                <label><a ng-click="openSelfInfo(item.account)" >{{item.name}}</a></label>
+            </div>
+            <div class="content-right">
+                <div  class="right-content">
+                    {{item.content}}
+                </div>
+                <div  class="right-reply">
+                    <div class="right-reply-toolbar">
+                        <span>{{item.floor}}楼</span>&nbsp;
+                        <span>{{item.createTime}}</span>&nbsp;
+                        <a href="" ng-show="!item.replyFlag" ng-click="item.replyFlag=true">回复({{item.child.length}})</a>&nbsp;
+                        <a href="" ng-show="item.replyFlag" ng-click="item.replyFlag=false">收起回复</a>&nbsp;
+                    </div>
+                    <div ng-show="item.replyFlag" class="right-reply-content" ng-repeat="childItem in item.child">
+                        <img ng-src="{{childItem.portrait}}">
+                        <div style="margin-left:40px;"><a ng-click="openSelfInfo(childItem.account)" href="">{{childItem.name}}</a>:{{childItem.content}}</div>
+                        <div style="text-align: right">{{childItem.createTime}}</div>
+                    </div>
+                    <div ng-show="item.replyFlag" class="right-reply-content">
+                        <div>
+                            <textarea class="form-control" placeholder="我也来说一句" rows="2" ng-model="item.replyContent"></textarea>
+                        </div>
+                        <div class="right">
+                            <button type="button"  ng-click="replyDiscussion(item,true)" class="btn-primary btn">确认</button>
+                        </div>
+                        <div class="clear-float"></div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="clear-float"></div>
+        </div>
+    </div>
+
+</div>
+<div class="discussion_aside_float_bar">
+    <ul>
+        <li style="margin-right: 15px;">
+            <button type="button" class="btn btn-primary" ng-click="replyDiscussion(args,false)">回复</button>
+        </li>
+        <li style="margin-right: 15px;">
+            <button type="button"  class="btn btn-warning" style="margin-top: 1px">
+                <a href="javascript:window.scrollTo( 0, 0 )" style="color: #ffffff">顶部</a></button>
+        </li>
+    </ul>
+</div>

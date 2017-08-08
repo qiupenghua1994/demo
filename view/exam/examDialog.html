@@ -1,0 +1,78 @@
+<form gf-form-dialog name="dialog" style="padding: 0px 14px 0 14px;" save-button="false" cancel-button="false">
+    <div class="col-sm-12 questionOptions">
+
+            <label  class="col-sm-12">
+                <span ng-bind="item.question"></span>
+            </label>
+
+            <!--单选题-->
+            <div ng-if="item.questionType == 1"
+                 class="col-sm-12 ecamOptions" ng-class="{active:nowOption==options.option}"
+                 ng-repeat="options in item.questionOptions"
+                 ng-click="changeOption(options.option)">
+                <div><span>{{options.option}}</span>:<span>{{options.detail}}</span></div>
+            </div>
+            <!--多选题-->
+            <div ng-if="item.questionType == 2"
+                 class="col-sm-12 ecamOptions" ng-class="{active:options.check}"
+                 ng-repeat="options in item.questionOptions"
+                 ng-click="options.check = !options.check" ng-init="options.check = false">
+                <div><span>{{options.option}}</span>:<span>{{options.detail}}</span></div>
+            </div>
+            <!--判断题-->
+            <div ng-if="item.questionType == 3"
+                 class="col-sm-12 ecamOptions" ng-class="{active:nowOption==options.option}"
+                 ng-repeat="options in item.questionOptions"
+                 ng-click="changeOption(options.option)">
+                <div><span>{{options.option}}</span></div>
+            </div>
+            <!--填空题-->
+            <div ng-if="item.questionType == 4"
+                 class="col-sm-12 filling" ng-repeat="options in item.questionOptions">
+                <div>
+                    <span>{{options.option}}:</span>
+                    <input type="text" ng-model="options.myAnswer">
+                                <span ng-show="fillingAnswerFlag">
+                                    <span ng-show="options.result" style="color: green"
+                                          class="glyphicon glyphicon-ok"></span>
+                                    <span ng-show="!options.result" style="color: red"
+                                          class="glyphicon glyphicon-remove"></span>
+                                </span>
+
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-primary"
+                                ng-click="submitAnswer(item)">
+                            <span class="glyphicon glyphicon-ok"></span>提交
+                        </button>
+                        <button type="button" class="btn btn-sm btn-default"
+                                ng-click="changeAnalysisFlag(item.$$hashKey)">解析
+                        </button>
+                        <button type="button" class="btn btn-sm btn-warning"
+                                ng-click="cellectQuestion(item)">
+                            <span class="glyphicon glyphicon-star"></span>收藏
+                        </button>
+                    </div>
+
+                                <span ng-show="isSubmit">
+                                    <span ng-show="!fillingAnswerFlag">
+                                        <span ng-show="answerResult">回答正确！</span>
+                                        <span ng-show="!answerResult" style="color: red">回答错误！</span>
+                                    </span>
+                                    <span ng-show="!answerQuestionResp">您已经做过该题了！</span>
+                                    <span ng-show="answerQuestionResp">积分{{score}}</span>
+
+                                </span>
+                </div>
+                <div ng-show="showAnalysisFlag==item.id">
+                    <span>解析：</span><span>{{item.analysis.why}}</span>
+                </div>
+            </div>
+
+
+    </div>
+
+</form>

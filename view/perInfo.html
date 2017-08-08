@@ -1,0 +1,41 @@
+<!--个人信息-->
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-3" style="padding-right: 5px;margin-bottom: 10px">
+            <div class="panel panel-default" style="margin-bottom: 0">
+                <div class="panel-heading">个人资料</div>
+                <div class="panel-body">
+                    <div style="text-align: center">
+                        <div style="    position: relative;">
+                        <img ng-src="{{perInfo.portrait}}" ng-mouseover="changePortrait(true)" ng-mouseleave="changePortrait(false)"
+                             style="border: 3px solid ;width: 110px;height: 110px;border-radius: 500px;    border-color: #eeeeee">
+                            <!--<div id="changeP" class=";update-avator" style="background-color: #aaaaaa;opacity: 0.7;-->
+                            <!--;transition:bottom 0.5s;font-size: 12px;position: absolute;width: 110px;height: 110px;left: 0;border-radius: 500px;">-->
+                                <!--<p><a style="color: white">更换头像</a></p>-->
+                            <!--</div>-->
+                        </div>
+
+                    </div>
+
+                    <label style="width: 100%;text-align: center;"><span ng-bind="perInfo.name"></span></label>
+
+                    <div style="margin-top: 10px;border-top: 1px dashed #ccc">
+                        <h5 style="margin-top: 10px;">访问：<span ng-bind="perInfo.flow"></span></h5>
+                        <h5 style="margin-top: 10px;">积分：<span ng-bind="perInfo.credits"></span></h5>
+                        <h5 style="margin-top: 10px;">等级：<span ng-bind="perInfo.rank"></span></h5>
+                        <h5 style="margin-top: 10px;"></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="perInfoMenu">
+                <div ui-sref=".activity({activity:routeArgs})"     class="perInfoMenuChild" ng-class="{perInfoMenuActive:perInfoMenuFlag==1}" ng-click="changeMenu(1)">最新动态</div>
+                <div ng-show="isSelFlag" ui-sref=".info({info:routeArgs})"              class="perInfoMenuChild" ng-class="{perInfoMenuActive:perInfoMenuFlag==2}" ng-click="changeMenu(2)">修改资料</div>
+                <div ui-sref=".discussion({discussion:routeArgs})"  class="perInfoMenuChild" ng-class="{perInfoMenuActive:perInfoMenuFlag==3}" ng-click="changeMenu(3)">论坛信息</div>
+                <div ui-sref=".statistics({statistics:routeArgs})"  class="perInfoMenuChild" ng-class="{perInfoMenuActive:perInfoMenuFlag==4}" ng-click="changeMenu(4)">习题统计</div>
+                <div ng-show="isSelFlag" ui-sref=".collect({collect:routeArgs})"        class="perInfoMenuChild" ng-class="{perInfoMenuActive:perInfoMenuFlag==5}" ng-click="changeMenu(5)">我的收藏</div>
+            </div></div>
+        <div class="col-sm-9" style="padding-left: 5px;margin-bottom: 10px">
+            <div ui-view></div>
+        </div>
+    </div>
+</div>

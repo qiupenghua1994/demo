@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<header>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--引用的 -->
+    <script type="text/javascript" src="/paper/WebRoot/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/paper/WebRoot/js/angular.js"></script>
+    <script type="text/javascript" src="/paper/WebRoot/js/angular-route.js"></script>
+    <script type="text/javascript" src="/paper/WebRoot/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="/paper/WebRoot/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/paper/WebRoot/css/bootstrap-theme.css">
+
+    <!--自己的 -->
+    <link rel="stylesheet" type="text/css" href="/paper/WebRoot/css/index.css">
+    <script type="text/javascript" src="/paper/WebRoot/controller/home.js"></script>
+
+    <script type="text/javascript" src="/paper/WebRoot/controller/index.js"></script>
+</header>
+<body ng-app="paper"  ng-controller="IndexController" style="background-color:#eee;max-width: 1200px;margin:0 auto">
+
+<div>
+    <!--头部导航-->
+    <header class="site-nav">
+
+    </header>
+    <div class="col-sm-12">
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">模态框</button>
+    </div>
+
+
+
+
+</div>
+<!--模态框-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    模态框（Modal）标题
+                </h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!--模态框 end-->
+
+<script>
+    $('li.dropdown').mouseover(function () {
+        $(this).addClass('open');
+    }).mouseout(function () {
+        $(this).removeClass('open');
+    });
+</script>
+</body>
+</html>

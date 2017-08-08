@@ -1,0 +1,50 @@
+<!--考场-->
+<div class="col-sm-12">
+    <div class="row">
+        <!--左侧最新消息-->
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="height: 52px;padding-bottom: 0px;border-bottom-width: 0px;">
+                    <label><h4>网络工程师2016上午场真题</h4></label>
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-12 question" ng-repeat="item in latestData">
+                        <div class="list-group">
+                            <label  class="list-group-item">
+                                第一题：单选题
+                            </label>
+                            <label  class="list-group-item">
+                                市场经济条件下，交易的进行主要通过(    )作为纽带来完成。
+                            </label>
+                            <a class="list-group-item">Dapibus ac facilisis insss</a>
+                            <a class="list-group-item">Morbi leo risus</a>
+                            <a class="list-group-item">Porta ac consectetur ac</a>
+                            <a class="list-group-item">Vestibulum at eros</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!--右侧排行榜-->
+        <div class="col-sm-4">
+            <div class="panel panel-default" style="right:30px;position:fixed;">
+                <div class="panel-body">
+                    <button type="button" class="btn btn-default">开始</button>
+                    <label>剩余时间:150分20秒</label>
+                    <button type="button" class="btn btn-default">暂停</button>
+                    <button type="button" class="btn btn-default">交卷</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.question').mouseover(function () {
+        $(this).addClass('redColor');
+    }).mouseout(function () {
+        $(this).removeClass('open');
+    });
+</script>
+

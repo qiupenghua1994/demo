@@ -1,0 +1,217 @@
+
+a {
+    cursor: pointer;
+}
+.tcenter{
+    text-align: center;
+}
+.tright{
+    text-align: right;
+}
+.tleft{
+    text-align: left;
+}
+/*靠右*/
+.right {
+    float: right;
+}
+/*靠左*/
+.left{
+    float: left;
+}
+
+/*排行榜*/
+.rankings {
+    border-bottom: 1px dashed #ccc;
+    padding: 5px;
+}
+/*新闻*/
+.news {
+    border-bottom: 1px dashed #ccc;
+    padding: 5px;
+}
+
+/*排行榜下的栅格去除内边框*/
+.news .col-sm-1, .news .col-sm-2 {
+    padding: 0px;
+}
+/*文字溢出省略代替*/
+.text-overfolw-ellipsis{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}.text-overfolw-ellipsis-2{
+     text-overflow: ellipsis;
+     display: -webkit-box; /** 将对象作为伸缩盒子模型显示 **/
+     -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+     -webkit-line-clamp: 2; /** 显示的行数 **/
+     overflow: hidden;  /** 隐藏超出的内容 **/
+}
+/*弹出框下移一点*/
+ .modal-dialog{
+     top: 35px;
+ }
+
+/*考题边框*/
+.question {
+    /*border: 1px solid #ccc;*/
+    padding: 5px;
+    /*margin-bottom: 3px;*/
+}
+
+.question .list-group-item {
+    padding: 3px;
+}
+
+.question .list-group .active {
+    background-color: #e0e0e0;
+}
+
+.redColor {
+    background-color: red;
+}
+.clear-float{
+    clear: both;
+}
+/*工具栏*/
+.toolbar {
+    padding: 5px 5px 8px 5px;
+}
+
+/*输入框name*/
+.name {
+    text-align: right;
+    margin: 5px 0px 0px 0px ;
+    padding: 0;
+    line-height: 36px;
+}
+
+/*input输入内容*/
+.input-detail {
+    text-align: left;
+    margin: 5px 0px 0px 0px ;
+    padding: 0;
+    line-height: 36px;
+}
+.input-detail label{
+    padding: 0;
+    margin: 0;
+}
+
+.gf-button i{
+    padding-right: 4px;
+}
+/*讨论区固定悬浮工具栏*/
+.discussion_aside_float_bar{
+    position: fixed;
+    bottom: 100px;
+    right: 5px ;
+
+}
+li{margin:0; padding:0; list-style-type:none}
+/*个人信息导航栏*/
+.perInfoMenu{
+    border-right:1px solid #dddddd ;border-left:1px solid #dddddd;
+}
+ .perInfoMenuChild{
+    text-align: center;
+    line-height:40px ;
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #dddddd;
+    background-color: #fff;
+    cursor: pointer;
+}
+ .perInfoMenuChild:hover{
+    background-color: red;
+     font-size: 20px;
+     font-weight: 200;
+     text-shadow: -3px 3px 3px #FF0000;
+}
+ .perInfoMenuActive{
+     font-size: 20px;
+     font-weight: 200;
+     text-shadow: -3px 3px 3px #FF0000;
+}
+ .imagePic img{
+     border: 1px solid ;width: 80px;height: 80px;;
+ }
+ /*帖子详情头部*/
+.discusstion-content-handle{
+    width: 800px;
+    height: 50px;
+    line-height:50px;
+    margin: 0 auto;
+    font-size: 25px;
+}
+.discusstion-content {
+    background-color: #e0e0e0;
+    width: 800px;margin: 0 auto;border: 2px solid #E5E5E5;
+}
+
+.discusstion-content .content-left{
+    position:relative;
+    width: 150px;float: left;min-height: 250px;
+}
+.discusstion-content img{
+    border: 1px solid ;width: 100px;height: 100px;margin:10px 25px 10px 25px
+}
+.discusstion-content label{
+    width: 100%;text-align: center;
+}
+.discusstion-content .content-right{
+    position:relative;
+    width: 646px;background-color: white;float: left;min-height: 250px;
+    padding: 10px;
+}
+.discusstion-content .content-right .right-content{
+    min-height: 230px;
+    padding: 10px;
+}
+.discusstion-content .content-right .right-reply{
+
+    min-height: 20px;
+}
+/*小的回复样式*/
+.right-reply-content{
+    width: 80%;
+    margin: 0 auto;
+    background-color: #E5E5E5;
+    min-height: 40px;
+    border-bottom: 1px dotted #222222;
+}
+.right-reply-content img{
+    width: 32px;height: 31px;margin: 5px;float: left;
+}
+.right-reply-toolbar{
+    text-align: right;
+}
+.discusstion-content .content-bottom{
+    position:relative;
+    width: 646px;background-color: #398439;float: left;min-height: 250px;
+    padding: 10px;
+}
+/*试题答案*/
+.questionOptions{
+    border: 2px solid #737373;
+    background-color: #b0e0e6;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.questionOptions .btn-sm{
+    padding: 2px 8px 2px 8px;
+}
+.ecamOptions{
+    margin: 2px;
+}
+.ecamOptions:hover{
+    cursor: pointer;
+    background-color:red;
+}
+.questionOptions .active{
+    background-color: #28a4c9;
+}
+/*填空题输入框*/
+.filling{
+    margin: 2px;
+}

@@ -1,0 +1,52 @@
+.gf-grid-container{
+    padding-bottom: 24px;
+    min-height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.gf-grid-container .gf-grid{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 24px;
+    top: 0;
+}
+
+.gf-grid-container .gf-grid-status-bar{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom:0;
+}
+
+.gf-grid-status-bar{
+    border: 1px solid rgb(155,194,230);
+    border-top: 0px;
+    padding: 3px;
+    font-size: 12px;
+    position: inherit;
+}
+.gf-grid-status-bar .error{
+    padding: 0px;
+    float: right;
+}
+.gf-grid-status-bar .filter-text{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    max-width: 500px;
+    color: #333;
+}
+.gf-grid-status-bar .status-gap{
+    margin-top: 6px;
+    border-left: 1px solid #9BC2E6;
+    padding: 4px;
+}
+
+.gf-grid .gf-column-panel-title{
+    color:white;
+}
+

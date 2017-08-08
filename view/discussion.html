@@ -1,0 +1,50 @@
+<!--论坛-->
+<div class="col-sm-12" style="padding-right:100px ">
+    <div class="panel panel-default">
+        <div class="panel-heading" style="height: 54px">
+            <div class="col-sm-4">
+                <div class="row">
+                    <h4 style="margin-top: 8px;">论坛最新</h4>
+                </div>
+            </div>
+            <div class="col-sm-8 form-inline tright">
+                <select class="form-control" placeholder="选择类别" ng-model="q.type">
+                    <option></option>
+                    <option value="101">信息处理技术员</option>
+                    <option value="102">程序员</option>
+                    <option value="103">网络管理员</option>
+                    <option value="201">软件设计师</option>
+                    <option value="202">网络工程师</option>
+                    <option value="203">嵌入式系统设计师</option>
+                    <option value="301">电子商务设计师</option>
+                    <option value="302">信息系统项目管理师</option>
+                    <option value="303">系统架构师</option>
+                    <option value="304">网络规划师</option>
+                </select>
+                <input type="text" class="form-control in" placeholder="关键字搜索" ng-model="q.fuzzy">
+                <button type="button" class="btn-default btn " ng-click="refresh()">刷新</button>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12" ng-repeat="item in themeList">
+                <div style="border: 1px solid #cccccc;margin: 3px;padding: 3px;">
+                    <div class="text-overfolw-ellipsis">
+                        <h4><a ng-click="getDiscussionContent(item)">{{item.themeName}}</a></h4>
+                    </div>
+                    <div class="text-overfolw-ellipsis-2">{{item.content}}</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div >
+    <div class="discussion_aside_float_bar form-inline" style="margin-right:15px">
+        <!--<button type="button" class="btn btn-default">管理</button><br>-->
+        <!--<button type="button" class="btn btn-default">消息</button><br>-->
+        <button type="button" class="btn btn-primary" ng-click="creatDiscussion()">发帖</button><br>
+        <button type="button" class="btn btn-warning" style="margin-top: 1px">
+            <a href="javascript:window.scrollTo( 0, 0 )" style="color: #ffffff;">顶部</a>
+        </button>
+    </div>
+</div>
